@@ -509,28 +509,36 @@
 .aurora-page #depoimentos {
   padding: 100px 0;
   background: var(--creme);
-  overflow: hidden;
+  /* REMOVIDO: overflow: hidden — bloqueava o scroll do carrossel */
 }
 
 .aurora-page #depoimentos .sec-titulo { margin-bottom: 56px; }
 
+/* FIX CARROSSEL: wrapper agora usa overflow visible + clip lateral via padding/margin */
 .aurora-page .depo-track-wrap {
-  overflow: hidden;
-  margin: 0 -24px;
+  overflow-x: auto;
+  overflow-y: visible;
+  margin: 0;
   padding: 0 24px;
+  /* esconde scrollbar mas permite scroll */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.aurora-page .depo-track-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .aurora-page .depo-track {
   display: flex;
   gap: 24px;
-  overflow-x: auto;
+  overflow-x: visible;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
   padding-bottom: 8px;
+  /* largura mínima para os cards caberem */
+  width: max-content;
 }
-
-.aurora-page .depo-track::-webkit-scrollbar { display: none; }
 
 .aurora-page .depo-card {
   min-width: 320px;
@@ -888,6 +896,10 @@
   .aurora-page .depo-card {
     min-width: 280px;
     max-width: 280px;
+  }
+
+  .aurora-page .depo-track-wrap {
+    padding: 0 16px;
   }
 }
 
