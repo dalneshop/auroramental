@@ -126,7 +126,7 @@ const depoimentos = [
     inicial: "F",
     nome: "Fernanda Feitosa",
     texto:
-      'Comecei a fazer terapia meio "escondido" de todos — tinha um pouco de preconceito no início. Mas durou pouco. Passei a amar terapia, a falar pra todo mundo. Isso mudou a minha vida, meu jeito de pensar e de cuidar da minha família.',
+      "Comecei a fazer terapia meio \"escondido\" de todos — tinha um pouco de preconceito no início. Mas durou pouco. Passei a amar terapia, a falar pra todo mundo. Isso mudou a minha vida, meu jeito de pensar e de cuidar da minha família.",
   },
   {
     inicial: "M",
@@ -145,6 +145,42 @@ const depoimentos = [
     nome: "Heloiza Nascimento",
     texto:
       "Sou paciente há mais de três anos. A Dra. Larissa sempre foi muito atenciosa e com as atividades para conhecimento próprio fui entendendo realmente o significado das coisas. Muito obrigada por tudo.",
+  },
+  {
+    inicial: "C",
+    nome: "Caroline Alves",
+    texto:
+      "Sou paciente da Lari a alguns meses, desde a primeira consulta ela tem sido essencial pra mim, muito inteligente, sabe do que está falando, compreensiva... Até pessoas próximas perceberam a minha mudança. Todo mundo deveria fazer terapia e a Lari com certeza é minha indicação.",
+  },
+  {
+    inicial: "L",
+    nome: "Lindsey Ariele",
+    texto:
+      "No início fiquei com um pouco de \"preconceito\", mas nas primeiras sessões, me senti à vontade, o profissionalismo e cuidado da terapeuta fizeram eu ter mais segurança e conseguir me soltar. Uma excelente profissional, atenciosa, dedicada e muito boa no que faz. Melhor psicóloga.",
+  },
+  {
+    inicial: "J",
+    nome: "Jaquelline Sant'Anna",
+    texto:
+      "Ela desmistificou a minha crença errada de que terapia não funcionava, que era coisa de louco e que era só uma conversinha com uma outra pessoa. Terapia ajuda muito, eu mudei completamente. Super indico a Lari, do fundo do coração.",
+  },
+  {
+    inicial: "M",
+    nome: "Mayara Santana",
+    texto:
+      "Ser atendida por uma profissional assim é um privilégio. A cada sessão percebi o quão incrível e atenciosa que a Lari é. Seu conhecimento, forma de trabalho, clareza nas explicações e capacidade que tem de nos fazer organizar os pensamentos sempre me impressiona. Na verdade, cada sessão é uma aula.",
+  },
+  {
+    inicial: "G",
+    nome: "Geovana Salgueiro",
+    texto:
+      "Faz quase um ano que me consulto com a Larissa e senti uma evolução absurda, em todas as áreas da minha vida, principalmente com relação à autoestima, segurança e ansiedade. Hoje consigo identificar com mais clareza os meus sentimentos. O trabalho dela tem transformado a minha vida!",
+  },
+  {
+    inicial: "G",
+    nome: "Gabriele Ramos",
+    texto:
+      "A terapia vem me fazendo virar algumas chaves no dia a dia. E ter trocas semanais com uma profissional que te entende, acolhe, te ajuda a enxergar em uma visão de um todo faz a terapia não ser uma obrigação mas um compromisso genuíno. Obrigada Lari, por todo o profissionalismo e carinho!",
   },
 ];
 
@@ -231,17 +267,17 @@ function AuroraLanding() {
   const [activeDot, setActiveDot] = useState(0);
 
   const handleDotClick = (i: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.querySelectorAll<HTMLElement>(".depo-card")[i];
-    if (card) track.scrollTo({ left: card.offsetLeft - 24, behavior: "smooth" });
+    const wrap = trackRef.current;
+    if (!wrap) return;
+    const card = wrap.querySelectorAll<HTMLElement>(".depo-card")[i];
+    if (card) wrap.scrollTo({ left: card.offsetLeft - 24, behavior: "smooth" });
   };
 
   const handleScroll = () => {
-    const track = trackRef.current;
-    if (!track) return;
-    const cards = Array.from(track.querySelectorAll<HTMLElement>(".depo-card"));
-    const scrollLeft = track.scrollLeft;
+    const wrap = trackRef.current;
+    if (!wrap) return;
+    const cards = Array.from(wrap.querySelectorAll<HTMLElement>(".depo-card"));
+    const scrollLeft = wrap.scrollLeft;
     let closest = 0;
     cards.forEach((card, i) => {
       if (
@@ -431,8 +467,8 @@ function AuroraLanding() {
             decidiu se cuidar.
           </h2>
         </div>
-        <div className="depo-track-wrap">
-          <div className="depo-track" ref={trackRef} onScroll={handleScroll}>
+        <div className="depo-track-wrap" ref={trackRef} onScroll={handleScroll}>
+          <div className="depo-track">
             {depoimentos.map((d, i) => (
               <div className="depo-card" key={i}>
                 <span className="depo-aspas">"</span>
