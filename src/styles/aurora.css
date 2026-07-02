@@ -595,9 +595,37 @@
 
 .aurora-page .depo-nav {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   margin-top: 32px;
   justify-content: center;
+  align-items: center;
+}
+
+.aurora-page .depo-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.aurora-page .depo-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 144, 104, 0.4);
+  background: var(--creme);
+  color: var(--caramelo);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.aurora-page .depo-arrow:hover {
+  background: var(--caramelo);
+  color: var(--creme);
 }
 
 .aurora-page .depo-dot {
