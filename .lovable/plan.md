@@ -1,41 +1,30 @@
-# Recriar a landing page "Aurora Mental"
+# Carrossel de depoimentos em loop infinito
 
-Vou reconstruir fielmente a landing page do arquivo HTML enviado como a página inicial do app, adaptada para a stack do projeto (TanStack Start + React).
+Vou reformular o carrossel da seção "Depoimentos" para que a navegação seja um **loop infinito**: ao avançar além do último depoimento, ele volta ao primeiro automaticamente (e o contrário ao voltar do primeiro).
 
-## O que será construído
+## Comportamento
 
-Uma página única (rota `/`) em português, com todas as seções do original:
+- Botões **‹ anterior** e **próximo ›** para navegar depoimento a depoimento.
+- Ao clicar em "próximo" no último card → volta ao primeiro sem parar (looping contínuo).
+- Ao clicar em "anterior" no primeiro card → vai para o último.
+- Os **dots** continuam funcionando (clicar leva direto ao depoimento) e ficam sincronizados com o card ativo.
+- Avanço automático opcional a cada ~6s (paro quando o usuário interage). *Confirmo abaixo se você quer o autoplay.*
 
-1. **Navbar fixa** — logo + botão CTA ("Agendar")
-2. **Hero** — eyebrow, título em 3 linhas animadas, subtítulo, botões (primário/secundário), badges e imagem lateral
-3. **Identificação** — fundo escuro, grade de sintomas com ícones e frase de destaque
-4. **Como funciona** — 4 passos numerados + card de destaque "Encontro Aurora"
-5. **Sobre a Larissa** — foto com moldura arredondada + badge, texto e credenciais
-6. **Depoimentos** — carrossel horizontal deslizável com indicadores (dots) clicáveis
-7. **Objeções** — respostas às hesitações comuns
-8. **CTA final** — fundo escuro, logo, título e botão
-9. **Footer**
+## Abordagem técnica
 
-## Detalhes técnicos
+Hoje o carrossel usa scroll nativo (`overflow-x: auto` + `scroll-snap`), que não faz wrap. Vou trocar por um controle baseado em índice em React:
 
-- **Fontes**: Playfair Display + Inter, carregadas via `<link>` no `head` da rota raiz (`src/routes/__root.tsx`), conforme a convenção do projeto (não via `@import` no CSS).
-- **Cores/estilo**: a paleta do original (creme, caramelo, sage, verde-escuro) será mantida. Para fidelidade máxima ao design, vou usar CSS próprio (um arquivo de estilos da página com as classes originais) em vez de reescrever tudo em tokens Tailwind — assim o resultado fica idêntico ao HTML enviado.
-- **Imagens**: o HTML traz 4 imagens embutidas em base64 (logo da nav, hero, foto da Larissa, logo do CTA final). Vou extrair essas imagens e registrá-las como assets do projeto, referenciando-as por import. Se alguma vier em baixa resolução/placeholder, aviso e posso regenerar.
-- **Interações em React**:
-  - Reveal ao rolar → hook com `IntersectionObserver`
-  - Carrossel de depoimentos → estado React com scroll suave e dots ativos sincronizados ao scroll
-- **SEO**: `title`, `description` e tags Open Graph da rota `/` preenchidas com o conteúdo do original (Aurora Mental — Psicologia Online).
-- **Responsivo**: manter os breakpoints/mobile do CSS original.
+- **`src/routes/index.tsx`**
+  - Substituir `handleScroll`/`scrollTo` por um estado `activeDot` com funções `next()` / `prev()` que fazem `(i + 1) % total` e `(i - 1 + total) % total`.
+  - O `.depo-track` passa a ser posicionado por `transform: translateX(...)` conforme o índice ativo, em vez de scroll.
+  - Adicionar os botões de seta ao lado dos dots.
+  - Manter os dots clicáveis apontando para o índice.
 
-## Estrutura de arquivos
+- **`src/styles/aurora.css`**
+  - Ajustar `.depo-track-wrap` para `overflow: hidden` e `.depo-track` com `transition: transform .5s ease`.
+  - Estilizar os botões de seta (‹ ›) na mesma paleta (caramelo/creme) junto da navegação de dots.
+  - Manter responsividade mobile.
 
-```text
-src/routes/index.tsx          -> página completa (componentes das seções)
-src/routes/__root.tsx         -> adicionar <link> das fontes
-src/styles/aurora.css (ou similar) -> CSS da página
-src/assets/                   -> imagens extraídas do base64
-```
+## Observação
 
-## Observações
-
-- Os links de CTA (WhatsApp/agendamento) no original são âncoras/`#`. Vou manter como estão; se você tiver um número de WhatsApp ou link de agendamento real, me passe que eu conecto os botões.
+O visual (cards, cores, tipografia) permanece idêntico — muda apenas a mecânica de navegação para o loop infinito. Nenhuma mudança de backend.
