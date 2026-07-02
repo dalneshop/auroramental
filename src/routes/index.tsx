@@ -265,30 +265,31 @@ function AuroraLanding() {
   useRevealOnScroll();
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeDot, setActiveDot] = useState(0);
+  const total = depoimentos.length;
 
-  const handleDotClick = (i: number) => {
-    const wrap = trackRef.current;
-    if (!wrap) return;
-    const card = wrap.querySelectorAll<HTMLElement>(".depo-card")[i];
-    if (card) wrap.scrollTo({ left: card.offsetLeft - 24, behavior: "smooth" });
-  };
+  const goTo = (i: number) => setActiveDot(((i % total) + total) % total);
+  const next = () => goTo(activeDot + 1);
+  const prev = () => goTo(activeDot - 1);
 
-  const handleScroll = () => {
-    const wrap = trackRef.current;
-    if (!wrap) return;
-    const cards = Array.from(wrap.querySelectorAll<HTMLElement>(".depo-card"));
-    const scrollLeft = wrap.scrollLeft;
-    let closest = 0;
-    cards.forEach((card, i) => {
-      if (
-        Math.abs(card.offsetLeft - 24 - scrollLeft) <
-        Math.abs(cards[closest].offsetLeft - 24 - scrollLeft)
-      ) {
-        closest = i;
-      }
-    });
-    setActiveDot(closest);
-  };
+  // Loop automático (pausa ao passar o mouse)
+  const pausedRef = useRef(false);
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!pausedRef.current) setActiveDot((i) => (i + 1) % total);
+    }, 6000);
+    return () => clearInterval(id);
+  }, [total]);
+
+  // Posiciona o track conforme o depoimento ativo
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>(".depo-card");
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap || "24") || 24;
+    const step = card.offsetWidth + gap;
+    track.style.transform = `translateX(-${activeDot * step}px)`;
+  }, [activeDot]);
 
   return (
     <div className="aurora-page">
