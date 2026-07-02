@@ -264,23 +264,27 @@ function WhatsappIcon() {
 function AuroraLanding() {
   useRevealOnScroll();
   const trackRef = useRef<HTMLDivElement>(null);
-  const [activeDot, setActiveDot] = useState(0);
   const total = depoimentos.length;
+  // Renderiza 3 cópias e começa no bloco do meio, para dar loop nos dois sentidos
+  const loopCards = [...depoimentos, ...depoimentos, ...depoimentos];
+  const [pos, setPos] = useState(total);
+  const activeDot = ((pos % total) + total) % total;
 
-  const goTo = (i: number) => setActiveDot(((i % total) + total) % total);
-  const next = () => goTo(activeDot + 1);
-  const prev = () => goTo(activeDot - 1);
+  const goTo = (i: number) => setPos(total + (((i % total) + total) % total));
+  const next = () => setPos((p) => p + 1);
+  const prev = () => setPos((p) => p - 1);
 
   // Loop automático (pausa ao passar o mouse)
   const pausedRef = useRef(false);
   useEffect(() => {
     const id = setInterval(() => {
-      if (!pausedRef.current) setActiveDot((i) => (i + 1) % total);
+      if (!pausedRef.current) setPos((p) => p + 1);
     }, 6000);
     return () => clearInterval(id);
-  }, [total]);
+  }, []);
 
   // Posiciona o track conforme o depoimento ativo
+  const mountedRef = useRef(false);
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -288,8 +292,22 @@ function AuroraLanding() {
     if (!card) return;
     const gap = parseFloat(getComputedStyle(track).columnGap || "24") || 24;
     const step = card.offsetWidth + gap;
-    track.style.transform = `translateX(-${activeDot * step}px)`;
-  }, [activeDot]);
+    track.style.transition = mountedRef.current ? "transform 0.5s ease" : "none";
+    track.style.transform = `translateX(-${pos * step}px)`;
+    mountedRef.current = true;
+
+    // Quando sai do bloco do meio, reposiciona sem animação (loop infinito)
+    if (pos >= total * 2 || pos < total) {
+      const onEnd = () => {
+        const normalized = total + (((pos % total) + total) % total);
+        track.style.transition = "none";
+        track.style.transform = `translateX(-${normalized * step}px)`;
+        setPos(normalized);
+      };
+      track.addEventListener("transitionend", onEnd, { once: true });
+      return () => track.removeEventListener("transitionend", onEnd);
+    }
+  }, [pos, total]);
 
   return (
     <div className="aurora-page">
@@ -474,7 +492,7 @@ function AuroraLanding() {
           onMouseLeave={() => (pausedRef.current = false)}
         >
           <div className="depo-track" ref={trackRef}>
-            {depoimentos.map((d, i) => (
+            {loopCards.map((d, i) => (
               <div className="depo-card" key={i}>
                 <span className="depo-aspas">"</span>
                 <p className="depo-texto">{d.texto}</p>
