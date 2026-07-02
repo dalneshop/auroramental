@@ -514,30 +514,20 @@
 
 .aurora-page #depoimentos .sec-titulo { margin-bottom: 56px; }
 
-/* FIX CARROSSEL: wrapper agora usa overflow visible + clip lateral via padding/margin */
+/* CARROSSEL EM LOOP: wrapper esconde overflow, track desliza via transform */
 .aurora-page .depo-track-wrap {
-  overflow-x: auto;
-  overflow-y: visible;
+  overflow: hidden;
   margin: 0;
   padding: 0 24px;
-  /* esconde scrollbar mas permite scroll */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.aurora-page .depo-track-wrap::-webkit-scrollbar {
-  display: none;
 }
 
 .aurora-page .depo-track {
   display: flex;
   gap: 24px;
-  overflow-x: visible;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
-  /* largura mínima para os cards caberem */
   width: max-content;
+  padding-bottom: 8px;
+  transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .aurora-page .depo-card {
