@@ -468,8 +468,12 @@ function AuroraLanding() {
             decidiu se cuidar.
           </h2>
         </div>
-        <div className="depo-track-wrap" ref={trackRef} onScroll={handleScroll}>
-          <div className="depo-track">
+        <div
+          className="depo-track-wrap"
+          onMouseEnter={() => (pausedRef.current = true)}
+          onMouseLeave={() => (pausedRef.current = false)}
+        >
+          <div className="depo-track" ref={trackRef}>
             {depoimentos.map((d, i) => (
               <div className="depo-card" key={i}>
                 <span className="depo-aspas">"</span>
@@ -486,15 +490,33 @@ function AuroraLanding() {
           </div>
         </div>
         <div className="depo-nav container reveal">
-          {depoimentos.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={"depo-dot" + (i === activeDot ? " active" : "")}
-              aria-label={"Depoimento " + (i + 1)}
-              onClick={() => handleDotClick(i)}
-            />
-          ))}
+          <button
+            type="button"
+            className="depo-arrow"
+            aria-label="Depoimento anterior"
+            onClick={prev}
+          >
+            ‹
+          </button>
+          <div className="depo-dots">
+            {depoimentos.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                className={"depo-dot" + (i === activeDot ? " active" : "")}
+                aria-label={"Depoimento " + (i + 1)}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            className="depo-arrow"
+            aria-label="Próximo depoimento"
+            onClick={next}
+          >
+            ›
+          </button>
         </div>
       </section>
 
