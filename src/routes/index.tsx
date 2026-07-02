@@ -490,7 +490,7 @@ function AuroraLanding() {
           onMouseLeave={() => (pausedRef.current = false)}
         >
           <div className="depo-track" ref={trackRef}>
-            {depoimentos.map((d, i) => (
+            {loopCards.map((d, i) => (
               <div className="depo-card" key={i}>
                 <span className="depo-aspas">"</span>
                 <p className="depo-texto">{d.texto}</p>
