@@ -860,9 +860,15 @@
   }
 
   .aurora-page .hero-image-wrap {
-    height: 50vw;
-    min-height: 260px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    max-height: 70vh;
     order: -1;
+  }
+
+  .aurora-page .hero-image-wrap img {
+    object-position: center 35%;
   }
 
   .aurora-page .hero-image-overlay {
