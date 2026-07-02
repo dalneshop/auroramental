@@ -284,6 +284,7 @@ function AuroraLanding() {
   }, []);
 
   // Posiciona o track conforme o depoimento ativo
+  const mountedRef = useRef(false);
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -291,8 +292,9 @@ function AuroraLanding() {
     if (!card) return;
     const gap = parseFloat(getComputedStyle(track).columnGap || "24") || 24;
     const step = card.offsetWidth + gap;
-    track.style.transition = "transform 0.5s ease";
+    track.style.transition = mountedRef.current ? "transform 0.5s ease" : "none";
     track.style.transform = `translateX(-${pos * step}px)`;
+    mountedRef.current = true;
 
     // Quando sai do bloco do meio, reposiciona sem animação (loop infinito)
     if (pos >= total * 2 || pos < total) {
