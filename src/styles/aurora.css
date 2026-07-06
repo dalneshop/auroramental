@@ -1002,7 +1002,24 @@
   .aurora-page .depo-track-wrap {
     padding: 0 16px;
   }
+
+  .aurora-page .espaco-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+
+  .aurora-page .espaco-card-lg,
+  .aurora-page .espaco-card-wide {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .aurora-page .localizacao-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .aurora-page *,
