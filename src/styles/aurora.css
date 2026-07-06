@@ -642,6 +642,83 @@
 
 .aurora-page .depo-dot.active { opacity: 1; }
 
+/* ── ESPAÇO (galeria do consultório) ── */
+.aurora-page #espaco {
+  padding: 100px 0;
+  background: var(--creme-escuro);
+}
+
+.aurora-page #espaco .sec-eyebrow { margin-bottom: 20px; }
+.aurora-page #espaco .sobre-desc {
+  max-width: 620px;
+  margin-bottom: 48px;
+}
+
+.aurora-page .espaco-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+
+.aurora-page .espaco-card {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--creme);
+  border: 1px solid rgba(184, 144, 104, 0.15);
+}
+
+.aurora-page .espaco-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aurora-page .espaco-card-lg {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.aurora-page .espaco-card-wide {
+  grid-column: span 2;
+}
+
+/* ── LOCALIZAÇÃO ── */
+.aurora-page #localizacao {
+  padding: 100px 0;
+  background: var(--creme);
+}
+
+.aurora-page #localizacao .sec-eyebrow { margin-bottom: 20px; }
+.aurora-page #localizacao .sec-titulo { margin-bottom: 56px; }
+
+.aurora-page .localizacao-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.aurora-page .localizacao-info .credencial {
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.aurora-page .localizacao-mapa {
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 144, 104, 0.15);
+}
+
+.aurora-page .localizacao-mapa iframe {
+  display: block;
+}
+
+
 /* ── OBJEÇÕES ── */
 .aurora-page #objecoes {
   padding: 100px 0;
