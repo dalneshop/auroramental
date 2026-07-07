@@ -622,6 +622,114 @@ function AuroraLanding() {
         </div>
       </section>
 
+      {/* INSTAGRAM */}
+      <section id="instagram">
+        <div className="container-wide">
+          <p className="sec-eyebrow reveal">Instagram</p>
+          <h2 className="sec-titulo reveal">Acompanhe a Larissa no Instagram</h2>
+          <p className="ig-sub reveal">
+            Conteúdo sobre autoconhecimento, limites e saúde emocional — sem romantizar o processo.
+          </p>
+
+          <div className="ig-perfil reveal">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener"
+              className="ig-perfil-foto"
+              aria-label="Abrir perfil de @psicologalarissacarvalho no Instagram"
+            >
+              <img
+                src="/instagram/instagram-larissa-profile.png"
+                alt="Foto de perfil da psicóloga Larissa Carvalho no Instagram"
+              />
+            </a>
+            <div className="ig-perfil-info">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="ig-perfil-handle">
+                @psicologalarissacarvalho
+              </a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="ig-seguir">
+                Seguir no Instagram
+              </a>
+            </div>
+          </div>
+
+          <div className="ig-grid reveal">
+            {instagramPosts.map((post, i) => (
+              <button
+                type="button"
+                className="ig-card"
+                key={post.id}
+                onClick={() => openPost(i)}
+                aria-label={`Abrir publicação ${post.id} do Instagram`}
+              >
+                <img
+                  src={post.capa}
+                  alt={`Publicação ${post.id} da Larissa no Instagram`}
+                  loading="lazy"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LIGHTBOX INSTAGRAM */}
+      {activePost && (
+        <div className="ig-lightbox" onClick={closePost} role="dialog" aria-modal="true">
+          <button
+            type="button"
+            className="ig-close"
+            aria-label="Fechar"
+            onClick={closePost}
+          >
+            ×
+          </button>
+          <div className="ig-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            {activePost.slides.length > 1 && (
+              <button
+                type="button"
+                className="ig-arrow ig-arrow-prev"
+                aria-label="Imagem anterior"
+                onClick={prevSlide}
+              >
+                ‹
+              </button>
+            )}
+            <img
+              className="ig-lightbox-img"
+              src={activePost.slides[slide]}
+              alt={`Imagem ${slide + 1} de ${activePost.slides.length}`}
+            />
+            {activePost.slides.length > 1 && (
+              <button
+                type="button"
+                className="ig-arrow ig-arrow-next"
+                aria-label="Próxima imagem"
+                onClick={nextSlide}
+              >
+                ›
+              </button>
+            )}
+          </div>
+          {activePost.slides.length > 1 && (
+            <div className="ig-dots" onClick={(e) => e.stopPropagation()}>
+              {activePost.slides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={"depo-dot" + (i === slide ? " active" : "")}
+                  aria-label={`Ir para imagem ${i + 1}`}
+                  onClick={() => setSlide(i)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+
+
       {/* OBJEÇÕES */}
       <section id="objecoes">
         <div className="container">
