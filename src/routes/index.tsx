@@ -365,6 +365,34 @@ function AuroraLanding() {
     }
   }, [pos, total]);
 
+  // Lightbox do Instagram
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [slide, setSlide] = useState(0);
+  const openPost = (i: number) => {
+    setLightbox(i);
+    setSlide(0);
+  };
+  const closePost = () => setLightbox(null);
+  const activePost = lightbox !== null ? instagramPosts[lightbox] : null;
+  const nextSlide = () =>
+    setSlide((s) => (activePost ? (s + 1) % activePost.slides.length : 0));
+  const prevSlide = () =>
+    setSlide((s) =>
+      activePost ? (s - 1 + activePost.slides.length) % activePost.slides.length : 0,
+    );
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePost();
+      else if (e.key === "ArrowRight") nextSlide();
+      else if (e.key === "ArrowLeft") prevSlide();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightbox, activePost]);
+
   return (
     <div className="aurora-page">
       {/* NAV */}
