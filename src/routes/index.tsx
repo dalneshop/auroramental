@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Terapia online com psicólogas especializadas em TCC. Agende seu Encontro Aurora gratuitamente.",
+          "Terapia online com psicólogas especializadas em TCC. Para mulheres que vivem com ansiedade, sobrecarga e querem mais leveza na vida. Agende seu Encontro Aurora gratuitamente.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
