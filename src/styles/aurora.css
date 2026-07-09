@@ -654,6 +654,10 @@
   margin-bottom: 48px;
 }
 
+.aurora-page #espaco .identificacao-cta p {
+  color: var(--verde-escuro);
+}
+
 .aurora-page .espaco-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

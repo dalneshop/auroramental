@@ -231,7 +231,7 @@ const objecoes = [
   },
   {
     pergunta: '"É muito caro para o meu momento."',
-    forte: "A sessão presencial custa R$130.",
+    forte: "A sessão presencial custa a partir de R$ 130,00.",
     resposta:
       "E antes disso, você tem o Encontro Aurora — 20 minutos gratuitos por vídeo, para entender se faz sentido, sem nenhum custo ou compromisso.",
   },
@@ -386,7 +386,7 @@ function PresencialLanding() {
             </span>
             <span className="badge">
               <span className="badge-dot" />
-              Sessão presencial R$130
+              à partir de R$ 130,00
             </span>
             <span className="badge">
               <span className="badge-dot" />
