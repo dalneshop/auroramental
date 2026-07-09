@@ -283,6 +283,7 @@ const instagramPosts = [
   },
 ];
 
+const objecoes = [
   {
     pergunta: '"Não tenho tempo, o deslocamento até aí é complicado."',
     forte: "Estamos no Centro de Campo Limpo Paulista, de fácil acesso.",
