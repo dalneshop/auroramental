@@ -227,7 +227,62 @@ const depoimentos = [
   },
 ];
 
-const objecoes = [
+const INSTAGRAM_URL = "https://instagram.com/psicologalarissacarvalho";
+
+const instagramPosts = [
+  {
+    id: 1,
+    capa: "/instagram/instagram-post1-01.png",
+    slides: [
+      "/instagram/instagram-post1-01.png", "/instagram/instagram-post1-02.png", "/instagram/instagram-post1-03.png",
+      "/instagram/instagram-post1-04.png", "/instagram/instagram-post1-05.png", "/instagram/instagram-post1-06.png",
+      "/instagram/instagram-post1-07.png", "/instagram/instagram-post1-08.png", "/instagram/instagram-post1-09.png",
+    ],
+  },
+  {
+    id: 2,
+    capa: "/instagram/instagram-post2-01.png",
+    slides: [
+      "/instagram/instagram-post2-01.png", "/instagram/instagram-post2-02.png", "/instagram/instagram-post2-03.png",
+      "/instagram/instagram-post2-04.png", "/instagram/instagram-post2-05.png", "/instagram/instagram-post2-06.png",
+      "/instagram/instagram-post2-07.png", "/instagram/instagram-post2-08.png", "/instagram/instagram-post2-09.png",
+      "/instagram/instagram-post2-10.png", "/instagram/instagram-post2-11.png",
+    ],
+  },
+  {
+    id: 3,
+    capa: "/instagram/instagram-post3-01.png",
+    slides: ["/instagram/instagram-post3-01.png"],
+  },
+  {
+    id: 4,
+    capa: "/instagram/instagram-post4-01.png",
+    slides: [
+      "/instagram/instagram-post4-01.png", "/instagram/instagram-post4-02.png", "/instagram/instagram-post4-03.png",
+      "/instagram/instagram-post4-04.png", "/instagram/instagram-post4-05.png", "/instagram/instagram-post4-06.png",
+    ],
+  },
+  {
+    id: 5,
+    capa: "/instagram/instagram-post5-01.png",
+    slides: [
+      "/instagram/instagram-post5-01.png", "/instagram/instagram-post5-02.png", "/instagram/instagram-post5-03.png",
+      "/instagram/instagram-post5-04.png", "/instagram/instagram-post5-05.png", "/instagram/instagram-post5-06.png",
+      "/instagram/instagram-post5-07.png", "/instagram/instagram-post5-08.png", "/instagram/instagram-post5-09.png",
+      "/instagram/instagram-post5-10.png",
+    ],
+  },
+  {
+    id: 6,
+    capa: "/instagram/instagram-post6-01.png",
+    slides: [
+      "/instagram/instagram-post6-01.png", "/instagram/instagram-post6-02.png", "/instagram/instagram-post6-03.png",
+      "/instagram/instagram-post6-04.png", "/instagram/instagram-post6-05.png", "/instagram/instagram-post6-06.png",
+      "/instagram/instagram-post6-07.png",
+    ],
+  },
+];
+
   {
     pergunta: '"Não tenho tempo, o deslocamento até aí é complicado."',
     forte: "Estamos no Centro de Campo Limpo Paulista, de fácil acesso.",
