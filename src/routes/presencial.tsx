@@ -137,7 +137,12 @@ const galeria = [
   {
     arquivo: "consultorio-detalhe-flores.jpg",
     alt: "Orquídeas ao lado do certificado Melhor do Ano 2023",
-    classe: "espaco-card espaco-card-wide",
+    classe: "espaco-card espaco-card-wide espaco-card-flores",
+  },
+  {
+    arquivo: "consultorio-2.jpg",
+    alt: "Consultório com poltronas verdes, mesa de madeira e cadeira branca",
+    classe: "espaco-card",
   },
 ];
 
