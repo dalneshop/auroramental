@@ -137,7 +137,12 @@ const galeria = [
   {
     arquivo: "consultorio-detalhe-flores.jpg",
     alt: "Orquídeas ao lado do certificado Melhor do Ano 2023",
-    classe: "espaco-card espaco-card-wide",
+    classe: "espaco-card espaco-card-wide espaco-card-flores",
+  },
+  {
+    arquivo: "consultorio-2.jpg",
+    alt: "Consultório com poltronas verdes, mesa de madeira e cadeira branca",
+    classe: "espaco-card",
   },
 ];
 
@@ -219,6 +224,62 @@ const depoimentos = [
     nome: "Gabriele Ramos",
     texto:
       "A terapia vem me fazendo virar algumas chaves no dia a dia. E ter trocas semanais com uma profissional que te entende, acolhe, te ajuda a enxergar em uma visão de um todo faz a terapia não ser uma obrigação mas um compromisso genuíno. Obrigada Lari, por todo o profissionalismo e carinho!",
+  },
+];
+
+const INSTAGRAM_URL = "https://instagram.com/psicologalarissacarvalho";
+
+const instagramPosts = [
+  {
+    id: 1,
+    capa: "/instagram/instagram-post1-01.png",
+    slides: [
+      "/instagram/instagram-post1-01.png", "/instagram/instagram-post1-02.png", "/instagram/instagram-post1-03.png",
+      "/instagram/instagram-post1-04.png", "/instagram/instagram-post1-05.png", "/instagram/instagram-post1-06.png",
+      "/instagram/instagram-post1-07.png", "/instagram/instagram-post1-08.png", "/instagram/instagram-post1-09.png",
+    ],
+  },
+  {
+    id: 2,
+    capa: "/instagram/instagram-post2-01.png",
+    slides: [
+      "/instagram/instagram-post2-01.png", "/instagram/instagram-post2-02.png", "/instagram/instagram-post2-03.png",
+      "/instagram/instagram-post2-04.png", "/instagram/instagram-post2-05.png", "/instagram/instagram-post2-06.png",
+      "/instagram/instagram-post2-07.png", "/instagram/instagram-post2-08.png", "/instagram/instagram-post2-09.png",
+      "/instagram/instagram-post2-10.png", "/instagram/instagram-post2-11.png",
+    ],
+  },
+  {
+    id: 3,
+    capa: "/instagram/instagram-post3-01.png",
+    slides: ["/instagram/instagram-post3-01.png"],
+  },
+  {
+    id: 4,
+    capa: "/instagram/instagram-post4-01.png",
+    slides: [
+      "/instagram/instagram-post4-01.png", "/instagram/instagram-post4-02.png", "/instagram/instagram-post4-03.png",
+      "/instagram/instagram-post4-04.png", "/instagram/instagram-post4-05.png", "/instagram/instagram-post4-06.png",
+    ],
+  },
+  {
+    id: 5,
+    capa: "/instagram/instagram-post5-01.png",
+    slides: [
+      "/instagram/instagram-post5-01.png", "/instagram/instagram-post5-02.png", "/instagram/instagram-post5-03.png",
+      "/instagram/instagram-post5-04.png", "/instagram/instagram-post5-05.png", "/instagram/instagram-post5-06.png",
+      "/instagram/instagram-post5-07.png", "/instagram/instagram-post5-08.png", "/instagram/instagram-post5-09.png",
+      "/instagram/instagram-post5-10.png",
+    ],
+  },
+  {
+    id: 6,
+    capa: "/instagram/instagram-post6-01.png",
+    slides: [
+      "/instagram/instagram-post6-01.png", "/instagram/instagram-post6-02.png", "/instagram/instagram-post6-03.png",
+      "/instagram/instagram-post6-04.png", "/instagram/instagram-post6-05.png", "/instagram/instagram-post6-06.png",
+      "/instagram/instagram-post6-07.png",
+    ],
   },
 ];
 
@@ -342,6 +403,36 @@ function PresencialLanding() {
       return () => track.removeEventListener("transitionend", onEnd);
     }
   }, [pos, total]);
+
+  // Lightbox do Instagram
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [slide, setSlide] = useState(0);
+  const openPost = (i: number) => {
+    setLightbox(i);
+    setSlide(0);
+  };
+  const closePost = () => setLightbox(null);
+  const activePost = lightbox !== null ? instagramPosts[lightbox] : null;
+  const nextSlide = () =>
+    setSlide((s) => (activePost ? (s + 1) % activePost.slides.length : 0));
+  const prevSlide = () =>
+    setSlide((s) =>
+      activePost ? (s - 1 + activePost.slides.length) % activePost.slides.length : 0,
+    );
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePost();
+      else if (e.key === "ArrowRight") nextSlide();
+      else if (e.key === "ArrowLeft") prevSlide();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightbox, activePost]);
+
+
 
   return (
     <div className="aurora-page">
@@ -497,7 +588,113 @@ function PresencialLanding() {
         </div>
       </section>
 
-      {/* LOCALIZAÇÃO */}
+      {/* INSTAGRAM */}
+      <section id="instagram">
+        <div className="container-wide">
+          <p className="sec-eyebrow reveal">Instagram</p>
+          <h2 className="sec-titulo reveal">Acompanhe a Larissa no Instagram</h2>
+          <p className="ig-sub reveal">
+            Conteúdo sobre autoconhecimento, limites e saúde emocional — sem romantizar o processo.
+          </p>
+
+          <div className="ig-perfil reveal">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener"
+              className="ig-perfil-foto"
+              aria-label="Abrir perfil de @psicologalarissacarvalho no Instagram"
+            >
+              <img
+                src="/instagram/instagram-larissa-profile.png"
+                alt="Foto de perfil da psicóloga Larissa Carvalho no Instagram"
+              />
+            </a>
+            <div className="ig-perfil-info">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="ig-perfil-handle">
+                @psicologalarissacarvalho
+              </a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener" className="ig-seguir">
+                Seguir no Instagram
+              </a>
+            </div>
+          </div>
+
+          <div className="ig-grid reveal">
+            {instagramPosts.map((post, i) => (
+              <button
+                type="button"
+                className="ig-card"
+                key={post.id}
+                onClick={() => openPost(i)}
+                aria-label={`Abrir publicação ${post.id} do Instagram`}
+              >
+                <img
+                  src={post.capa}
+                  alt={`Publicação ${post.id} da Larissa no Instagram`}
+                  loading="lazy"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LIGHTBOX INSTAGRAM */}
+      {activePost && (
+        <div className="ig-lightbox" onClick={closePost} role="dialog" aria-modal="true">
+          <button
+            type="button"
+            className="ig-close"
+            aria-label="Fechar"
+            onClick={closePost}
+          >
+            ×
+          </button>
+          <div className="ig-lightbox-inner" onClick={(e) => e.stopPropagation()}>
+            {activePost.slides.length > 1 && (
+              <button
+                type="button"
+                className="ig-arrow ig-arrow-prev"
+                aria-label="Imagem anterior"
+                onClick={prevSlide}
+              >
+                ‹
+              </button>
+            )}
+            <img
+              className="ig-lightbox-img"
+              src={activePost.slides[slide]}
+              alt={`Imagem ${slide + 1} de ${activePost.slides.length}`}
+            />
+            {activePost.slides.length > 1 && (
+              <button
+                type="button"
+                className="ig-arrow ig-arrow-next"
+                aria-label="Próxima imagem"
+                onClick={nextSlide}
+              >
+                ›
+              </button>
+            )}
+          </div>
+          {activePost.slides.length > 1 && (
+            <div className="ig-dots" onClick={(e) => e.stopPropagation()}>
+              {activePost.slides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={"depo-dot" + (i === slide ? " active" : "")}
+                  aria-label={`Ir para imagem ${i + 1}`}
+                  onClick={() => setSlide(i)}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+
       <section id="localizacao">
         <div className="container-wide">
           <p className="sec-eyebrow reveal">Onde estamos</p>

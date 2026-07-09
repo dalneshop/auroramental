@@ -689,6 +689,10 @@
   grid-column: span 2;
 }
 
+.aurora-page .espaco-card-flores img {
+  object-position: center 68%;
+}
+
 /* ── LOCALIZAÇÃO ── */
 .aurora-page #localizacao {
   padding: 100px 0;
