@@ -14,13 +14,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Terapia online com psicólogas especializadas em TCC. Para mulheres que vivem com ansiedade, sobrecarga e querem mais leveza na vida. Agende seu Encontro Aurora gratuitamente.",
+          "Terapia online com TCC, a partir de R$100 a sessão. Agende uma conversa inicial gratuita de 20 minutos (Encontro Aurora) para conhecer o processo.",
       },
       { property: "og:title", content: "Aurora Mental — Psicologia Online com Base Científica" },
       {
         property: "og:description",
         content:
-          "Terapia online com psicólogas especializadas em TCC. Para mulheres que vivem com ansiedade, sobrecarga e querem mais leveza na vida. Agende seu Encontro Aurora gratuitamente.",
+          "Terapia online com TCC, a partir de R$100 a sessão. Agende uma conversa inicial gratuita de 20 minutos (Encontro Aurora) para conhecer o processo.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -757,7 +757,7 @@ function AuroraLanding() {
       <section id="cta-final">
         <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <img src={logoAsset.url} alt="Aurora Mental" className="cta-final-logo" />
-          <div className="cta-gratuito">✦ Sem custo · Sem compromisso</div>
+          <div className="cta-gratuito">✦ Primeira conversa sem custo · 20 min, depois consultas 50 min a partir de R$ 100,00</div>
           <h2 className="cta-titulo">
             Dê o primeiro passo.
             <br />
