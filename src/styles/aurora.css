@@ -1172,6 +1172,16 @@
     padding: 32px 24px 60px;
   }
 
+  .aurora-page .hero-badges {
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .aurora-page .badge {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   .aurora-page .sintomas-grid {
     grid-template-columns: 1fr;
   }
