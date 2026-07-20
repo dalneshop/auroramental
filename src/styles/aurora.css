@@ -1268,6 +1268,14 @@
     top: 12px;
     right: 12px;
   }
+
+  .aurora-page .cta-gratuito {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+    letter-spacing: 0.04em;
+    border-radius: 100px;
+    max-width: 92%;
+  }
 }
 
 
