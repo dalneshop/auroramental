@@ -1046,17 +1046,20 @@
 .aurora-page .cta-gratuito {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
   background: rgba(184, 144, 104, 0.15);
   color: var(--caramelo-claro);
   border: 1px solid rgba(184, 144, 104, 0.3);
   border-radius: 100px;
-  padding: 8px 18px;
+  padding: 10px 22px;
   font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  max-width: min(640px, 90%);
   margin-bottom: 24px;
-  text-transform: uppercase;
 }
 
 .aurora-page .btn-wpp {
@@ -1264,6 +1267,14 @@
   .aurora-page .ig-close {
     top: 12px;
     right: 12px;
+  }
+
+  .aurora-page .cta-gratuito {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+    letter-spacing: 0.04em;
+    border-radius: 100px;
+    max-width: 92%;
   }
 }
 
