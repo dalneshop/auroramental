@@ -193,12 +193,13 @@
 }
 
 .aurora-page .badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   font-size: 0.78rem;
   color: var(--texto-suave);
   font-weight: 400;
+  line-height: 1.5;
 }
 
 .aurora-page .badge-dot {
