@@ -431,7 +431,7 @@ function AuroraLanding() {
           <div className="hero-badges">
             <span className="badge">
               <span className="badge-dot" />
-              20 min gratuitos
+              20 min gratuitos, depois a partir de R$100
             </span>
             <span className="badge">
               <span className="badge-dot" />
