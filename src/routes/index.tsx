@@ -251,7 +251,7 @@ const objecoes = [
     pergunta: '"É muito caro para o meu momento."',
     forte: "Temos psicólogas com diferentes valores de sessão.",
     resposta:
-      "A partir de R$100. E antes de qualquer sessão paga, você tem o Encontro Aurora — 20 minutos gratuitos para entender se faz sentido para você.",
+      "A partir de R$130. E antes de qualquer sessão paga, você tem o Encontro Aurora — 20 minutos gratuitos para entender se faz sentido para você.",
   },
   {
     pergunta: '"Não sei se terapia funciona pra mim."',
@@ -431,7 +431,7 @@ function AuroraLanding() {
           <div className="hero-badges">
             <span className="badge">
               <span className="badge-dot" />
-              20 min gratuitos, depois a partir de R$100
+              20 min gratuitos, depois a partir de R$130
             </span>
             <span className="badge">
               <span className="badge-dot" />
